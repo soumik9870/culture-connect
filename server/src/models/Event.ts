@@ -5,6 +5,7 @@ const EventSchema = new mongoose.Schema({
     date: {type: Date, required: true},
     location: {type: String, required: true},
     description: {type: String },
+    tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
     culture_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Culture'},
     created_by: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     created_at: {type: Date, default: Date.now}

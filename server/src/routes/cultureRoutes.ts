@@ -7,13 +7,14 @@ import {
     updateCulture,
     deleteCulture
 } from '../controllers/cultureController';
+import { protect } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-router.post('/', createCulture);
-router.get('/', getCultures);
-router.get('/:id', getCultureById);
-router.put('/:id', updateCulture);
-router.delete('/:id', deleteCulture);
+router.post('/', protect, createCulture);
+router.get('/', protect, getCultures);
+router.get('/:id', protect, getCultureById);
+router.put('/:id', protect, updateCulture);
+router.delete('/:id', protect, deleteCulture);
 
 export default router;

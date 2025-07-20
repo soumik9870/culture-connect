@@ -6,13 +6,14 @@ import {
   updateContribution,
   deleteContribution,
 } from '../controllers/contributionController';
+import { protect } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-router.post('/', createContribution);
-router.get('/', getContributions);
-router.get('/:id', getContributionById);
-router.put('/:id', updateContribution);
-router.delete('/:id', deleteContribution);
+router.post('/', protect, createContribution);
+router.get('/', protect, getContributions);
+router.get('/:id', protect, getContributionById);
+router.put('/:id', protect, updateContribution);
+router.delete('/:id', protect, deleteContribution);
 
 export default router;
