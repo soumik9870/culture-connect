@@ -5,12 +5,13 @@ import {
   getMessageById,
   deleteMessage,
 } from '../controllers/messageController';
+import { protect } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-router.post('/', createMessage);
-router.get('/', getMessages);
-router.get('/:id', getMessageById);
-router.delete('/:id', deleteMessage);
+router.post('/', protect, createMessage);
+router.get('/', protect, getMessages);
+router.get('/:id', protect, getMessageById);
+router.delete('/:id', protect, deleteMessage);
 
 export default router;
